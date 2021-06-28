@@ -6,7 +6,9 @@
  *
  ******************************************************/
 package service;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +61,7 @@ public class EmployeePayrollService {
 	 */
 	public void writeToFile() {
 		try {
-			FileOutputStream writeData = new FileOutputStream("output.txt");
+			FileOutputStream writeData = new FileOutputStream("payroll.txt");
 			ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
 			writeStream.writeObject(employeePayrollList);
 			writeStream.flush();
@@ -69,6 +71,25 @@ public class EmployeePayrollService {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	/**
+	 * Reads objects from file
+	 * Prints them on console
+	 * Prints number of entries
+	 */
+	public void readFromFile() {
+		try {
+			FileInputStream readData = new FileInputStream("payroll.txt");
+			ObjectInputStream readStream = new ObjectInputStream(readData);
+			ArrayList<EmployeeData> newList = (ArrayList<EmployeeData>) readStream.readObject();
+			readStream.close();
+			System.out.println(newList);
+			System.out.println("Number of entries :"+newList.size());
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

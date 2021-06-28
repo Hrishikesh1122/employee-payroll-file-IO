@@ -31,6 +31,9 @@ public class EmployeePayrollServiceMain
         	case 3:
         		empservice.writeToFile();
         		break;
+        	case 4:
+        		empservice.readFromFile();
+        		break;
         	case 5:
         		isExit = true;
         		break;
