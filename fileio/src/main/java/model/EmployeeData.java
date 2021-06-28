@@ -1,5 +1,12 @@
+/***************************************************************
+ * Purpose : POJO for EmployeeData object. Contains employee Id,
+ *           employee name and employee salary.
+ * @author Hrishikesh Ugavekar
+ * @Version 1.1
+ * @since 28-06-2021
+ *
+ ***************************************************************/
 package model;
-
 public class EmployeeData {
 	public int empId;
 	public String empName;
