@@ -6,6 +6,8 @@
  *
  ******************************************************/
 package service;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,10 +39,9 @@ public class EmployeePayrollService {
 				EmployeeData employee = new EmployeeData(id,name,salary);
 				employeePayrollList.add(employee);
 				runcheck = false;
-				scanner.close();
 			}
 			catch (Exception e) {
-				System.out.println("Invalid entry ,enter again");
+				System.err.println("Invalid entry ,enter again");
 			}	
 		}while(runcheck);
 	}
@@ -50,6 +51,24 @@ public class EmployeePayrollService {
 	 */
 	public void writeToConsole() {
 		System.out.println(employeePayrollList);
+	}
+	
+	
+	/**
+	 * Purpose : Writes Arraylist employeePayrollList to file output.txt
+	 */
+	public void writeToFile() {
+		try {
+			FileOutputStream writeData = new FileOutputStream("output.txt");
+			ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
+			writeStream.writeObject(employeePayrollList);
+			writeStream.flush();
+			writeStream.close();	
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 }

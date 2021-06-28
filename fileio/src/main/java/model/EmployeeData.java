@@ -7,7 +7,10 @@
  *
  ***************************************************************/
 package model;
-public class EmployeeData {
+
+import java.io.Serializable;
+
+public class EmployeeData implements Serializable {
 	public int empId;
 	public String empName;
 	public double empSalary;
