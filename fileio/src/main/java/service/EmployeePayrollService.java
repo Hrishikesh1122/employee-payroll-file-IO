@@ -7,7 +7,9 @@
  ******************************************************/
 package service;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -58,17 +60,22 @@ public class EmployeePayrollService {
 	
 	/**
 	 * Purpose : Writes Arraylist employeePayrollList to file output.txt
+	 * @throws IOException 
 	 */
-	public void writeToFile() {
+	public void writeToFile() throws IOException {
+		FileOutputStream writeData = new FileOutputStream("payroll.txt");
+		ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
 		try {
-			FileOutputStream writeData = new FileOutputStream("payroll.txt");
-			ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
+		
 			writeStream.writeObject(employeePayrollList);
 			writeStream.flush();
-			writeStream.close();	
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			writeStream.close();
+			
 		}
 		
 	}
@@ -77,18 +84,21 @@ public class EmployeePayrollService {
 	 * Reads objects from file
 	 * Prints them on console
 	 * Prints number of entries
+	 * @throws IOException 
 	 */
-	public void readFromFile() {
+	public void readFromFile() throws IOException {
+		FileInputStream readData = new FileInputStream("payroll.txt");
+		ObjectInputStream readStream = new ObjectInputStream(readData);
 		try {
-			FileInputStream readData = new FileInputStream("payroll.txt");
-			ObjectInputStream readStream = new ObjectInputStream(readData);
 			ArrayList<EmployeeData> newList = (ArrayList<EmployeeData>) readStream.readObject();
-			readStream.close();
 			System.out.println(newList);
 			System.out.println("Number of entries :"+newList.size());
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			readStream.close();
 		}
 	}
 

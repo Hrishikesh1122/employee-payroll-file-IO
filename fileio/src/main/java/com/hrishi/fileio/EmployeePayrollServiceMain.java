@@ -6,13 +6,14 @@
  *
  ******************************************************/
 package com.hrishi.fileio;
+import java.io.IOException;
 import java.util.Scanner;
 
 import service.EmployeePayrollService;
 
 public class EmployeePayrollServiceMain 
 { 
-    public static void main( String[] args ) 
+    public static void main( String[] args ) throws IOException 
     {
         EmployeePayrollService empservice = new EmployeePayrollService();
         Scanner sc = new Scanner(System.in);
