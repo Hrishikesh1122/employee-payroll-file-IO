@@ -1,0 +1,48 @@
+package service;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import model.EmployeeData;
+
+public class EmployeePayrollService {
+	
+	private List<EmployeeData> employeePayrollList = new ArrayList<>();
+
+	
+	/**
+	 * Takes employee details i.e id,name and salary from console.
+	 * Stores the EmployeeData object in arraylist.
+	 * Catches exception if user enters details which do not match their type.
+	 * Use of do while loop to let user enter details again if there occurs any
+	 * exception in earlier entry.
+	 */
+	public void readFromConsole(){
+		boolean runcheck=true;
+		do {
+			try {
+				Scanner scanner = new Scanner(System.in);
+				System.out.println("Enter Employee Id");
+				int id = scanner.nextInt();
+				System.out.println("Enter Employee Name");
+				String name = scanner.next();
+				System.out.println("Enter employee Salary");
+				double salary = scanner.nextDouble();
+				EmployeeData employee = new EmployeeData(id,name,salary);
+				employeePayrollList.add(employee);
+				runcheck = false;
+				scanner.close();
+			}
+			catch (Exception e) {
+				System.out.println("Invalid entry ,enter again");
+			}	
+		}while(runcheck);
+	}
+	
+	/**
+	 * Prints employee details on console.
+	 */
+	public void writeToConsole() {
+		System.out.println(employeePayrollList);
+	}
+
+}
